@@ -1,0 +1,157 @@
+:root {
+  --creme: #fbf3e4;
+  --marrom: #120804;
+  --ouro: #d9a84e;
+  --ouro-claro: #f5d48a;
+  --vinho: #8c2f1f;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); color: var(--creme); background: var(--marrom); overflow-x: hidden; }
+
+/* Vídeo em tela cheia */
+.fundo-video { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; }
+
+/* Degradê sutil por cima do vídeo */
+.degrade {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(-45deg, #ff3d7f, #ff7a1a, #ffc83d, #8e2de2, #e0573d, #ff3d7f);
+  background-size: 400% 400%; animation: correr 16s ease infinite;
+  mix-blend-mode: soft-light; opacity: .45;
+}
+@keyframes correr { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+.escurecer {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to right, rgba(18,8,4,.7), rgba(18,8,4,.2) 60%, rgba(18,8,4,.25));
+}
+
+/* Menu */
+.menu {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center; padding: 26px 6vw;
+}
+.marca { font-family: var(--serif); font-size: 1.45rem; letter-spacing: .05em; }
+.menu nav span { font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--ouro-claro); }
+
+/* Título inicial */
+.titulo-inicial {
+  position: fixed; top: 46%; left: 50%; transform: translate(-50%, -50%);
+  z-index: 5; text-align: center; width: min(90vw, 900px); pointer-events: none;
+}
+.kicker { font-size: .75rem; letter-spacing: .45em; text-transform: uppercase; color: var(--ouro-claro); margin-bottom: 20px; }
+.titulo-inicial h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(3rem, 9vw, 7rem); line-height: 1; text-shadow: 0 4px 24px rgba(0,0,0,.45); }
+.slogan { margin-top: 20px; font-family: var(--serif); font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.5rem); color: var(--creme); }
+.dica { display: inline-block; margin-top: 34px; font-size: .78rem; letter-spacing: .25em; text-transform: uppercase; color: var(--ouro-claro); }
+
+.carregando { position: fixed; bottom: 22px; right: 24px; z-index: 10; font-size: .8rem; letter-spacing: .1em; color: var(--ouro-claro); }
+
+/* Painéis: texto à esquerda, saco ao centro */
+.painel { position: fixed; inset: 0; z-index: 4; display: flex; align-items: center; padding: 100px 6vw 60px 7vw; pointer-events: none; }
+.caixa {
+  max-width: min(540px, 44vw); background: rgba(18,8,4,.86);
+  border-top: 2px solid var(--ouro); padding: 44px 48px;
+  box-shadow: 0 30px 60px rgba(0,0,0,.35);
+}
+.rotulo { font-size: .7rem; letter-spacing: .38em; text-transform: uppercase; color: var(--ouro-claro); margin-bottom: 14px; }
+.caixa h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 3.2vw, 2.8rem); line-height: 1.15; margin-bottom: 28px; }
+.texto { font-size: 1rem; line-height: 1.85; color: #efe3cf; }
+
+/* Cardápio em lista */
+.lista { list-style: none; }
+.prato { padding: 18px 0; border-top: 1px solid rgba(217,168,78,.35); }
+.prato:last-child { border-bottom: 1px solid rgba(217,168,78,.35); }
+.prato-topo { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.prato h3 { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; }
+.preco { font-family: var(--serif); font-size: 1.15rem; color: var(--ouro-claro); white-space: nowrap; }
+.prato p { margin-top: 6px; font-size: .9rem; line-height: 1.6; color: #d8c9b2; }
+
+/* Passos */
+.passos { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); }
+.passo { padding: 0 18px; border-left: 1px solid rgba(217,168,78,.35); }
+.passo:first-child { padding-left: 0; border-left: none; }
+.numero { font-family: var(--serif); font-size: 1.9rem; color: var(--ouro-claro); display: block; margin-bottom: 10px; }
+.passo h3 { font-family: var(--serif); font-weight: 400; font-size: 1.1rem; margin-bottom: 8px; }
+.passo p { font-size: .85rem; line-height: 1.6; color: #d8c9b2; }
+
+/* Contato */
+.info { display: grid; gap: 18px; }
+.info div { border-top: 1px solid rgba(217,168,78,.35); padding-top: 14px; }
+.info dt { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--ouro-claro); margin-bottom: 6px; }
+.info dd { font-family: var(--serif); font-size: 1.15rem; }
+
+.botao {
+  display: inline-block; margin-top: 32px; padding: 15px 34px; border: 1px solid var(--ouro);
+  color: var(--creme); background: var(--vinho); text-decoration: none; font-size: .78rem;
+  letter-spacing: .22em; text-transform: uppercase; pointer-events: auto; transition: background .3s, color .3s;
+}
+.botao:hover { background: var(--ouro); color: var(--marrom); }
+
+/* Rodapé */
+.rodape-painel { align-items: flex-end; padding: 0; }
+.rodape {
+  width: 100%; background: rgba(18,8,4,.92); padding: 28px 6vw; text-align: center; font-size: .8rem;
+  border-top: 2px solid var(--ouro); display: flex; flex-direction: column; gap: 8px; align-items: center; color: #d8c9b2;
+}
+.rodape .marca { font-size: 1.5rem; color: var(--creme); }
+
+/* Trilha de rolagem */
+.trilha { height: 600vh; position: relative; z-index: 2; }
+
+@media (max-width: 900px) {
+  .passos { grid-template-columns: 1fr; }
+  .passo { padding: 14px 0; border-left: none; border-top: 1px solid rgba(217,168,78,.35); }
+  .passo:first-child { border-top: none; }
+}
+@media (max-width: 760px) {
+  .painel { align-items: flex-end; padding: 0 4vw 40px; }
+  .caixa { max-width: 100%; padding: 28px 24px; }
+  .dica { display: none; }
+  .menu nav { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .degrade { animation: none; } }
+
+/* Textos sem caixa: fundo de vídeo puro, com letras nítidas */
+.caixa-livre {
+  background: none; border: none; box-shadow: none; padding: 0; max-width: min(560px, 46vw);
+  text-shadow: 0 2px 16px rgba(0,0,0,.75), 0 0 2px rgba(0,0,0,.5);
+}
+.caixa-livre .rotulo { color: var(--ouro-claro); }
+.caixa-livre h2 { color: #fff; }
+.caixa-livre h2::after {
+  content: ''; display: block; width: 84px; height: 2px; background: var(--ouro); margin-top: 20px;
+}
+.caixa-livre .texto { color: #fff; }
+.caixa-livre .prato { border-top-color: rgba(217,168,78,.6); }
+.caixa-livre .prato:last-child { border-bottom-color: rgba(217,168,78,.6); }
+.caixa-livre .prato p, .caixa-livre .passo p { color: #f3eadb; }
+.caixa-livre .passo { border-left: none; padding: 14px 0 0; border-top: 1px solid rgba(217,168,78,.6); }
+.caixa-livre .passo:first-child { padding-left: 0; }
+.caixa-livre .passos { gap: 0; grid-template-columns: repeat(3, 1fr); }
+.caixa-livre .passos .passo + .passo { padding-left: 0; }
+.caixa-livre .passos { column-gap: 28px; }
+.caixa-livre .botao { text-shadow: none; }
+.escurecer { background: linear-gradient(to right, rgba(18,8,4,.6), rgba(18,8,4,.15) 60%, rgba(18,8,4,.2)); }
+
+/* Cardápio: um prato por vez, ocupando a tela alternando lados */
+.painel-prato { padding: 100px 7vw 60px; }
+.painel-prato.esq { justify-content: flex-start; }
+.painel-prato.dir { justify-content: flex-end; }
+.prato-grande { max-width: min(640px, 48vw); text-shadow: 0 2px 18px rgba(0,0,0,.8), 0 0 2px rgba(0,0,0,.5); }
+.painel-prato.dir .prato-grande { text-align: right; }
+.indice { display: block; font-size: .75rem; letter-spacing: .4em; color: var(--ouro-claro); margin-bottom: 16px; }
+.prato-grande h2 { font-family: var(--serif); font-style: italic; font-weight: 400; color: #fff;
+  font-size: clamp(2.6rem, 6.2vw, 5.6rem); line-height: 1; }
+.prato-grande h2::after { content: ''; display: block; width: 96px; height: 2px; background: var(--ouro); margin: 22px 0 18px; }
+.painel-prato.dir .prato-grande h2::after { margin-left: auto; }
+.preco-grande { display: block; font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 2.2rem); color: var(--ouro-claro); margin-bottom: 14px; }
+.prato-grande p { font-size: clamp(1rem, 1.4vw, 1.15rem); line-height: 1.7; color: #fff; max-width: 520px; }
+.painel-prato.dir .prato-grande p { margin-left: auto; }
+
+@media (max-width: 760px) {
+  .painel-prato { align-items: flex-end; padding: 0 5vw 40px; }
+  .prato-grande { max-width: 100%; text-align: left !important; }
+  .painel-prato.dir .prato-grande h2::after, .painel-prato.dir .prato-grande p { margin-left: 0; }
+  .prato-grande h2 { font-size: 2.4rem; }
+}
